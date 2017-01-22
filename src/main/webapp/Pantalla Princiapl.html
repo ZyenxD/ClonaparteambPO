@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta> -->
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"></link>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"></link>
+<style>
+
+body, html {
+	height: 100%
+}
+
+
+footer {
+	opacity: 0.5;
+	color: green;
+}
+
+.datosDer{
+   display: inline;
+   color: #DB332C;
+   position: absolute;
+   right: 10px;
+   top: 50px;
+   font-size: 20px;
+}
+#datosIzq{
+   border-collapse:collapse;
+    width:100%;
+}
+
+.col-md-4{
+	display: list-item;
+	list-style:none;
+    justify-content: center;
+   	padding-top:100px;
+   	padding-right:300px;
+    font-size: 50px;
+}
+.container{
+	display: inline-flex;
+    justify-content: center;
+    padding-left: 300px;
+}
+.general{
+    text-align: center;
+    color:#DB332C;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family:Oswald;
+}
+.list{
+	list-style:none;
+	font-family: Oswald;
+}
+.meter{
+	height: 20px;  /* Can be anything */
+	position: relative;
+	background: #555;
+	border-radius: 25px;
+	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+	font-size: 20px;
+	text-align: center;
+	font-family: Oswald;
+}
+.meter span{
+	 display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #DB332C;
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43,194,83) 37%,
+    rgb(84,240,84) 69%
+  );
+  box-shadow: 
+    inset 0 2px 9px  rgba(255,255,255,0.3),
+    inset 0 -2px 6px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+}
+#DashPensum{
+    background: white;
+    border: solid;
+    height: 423px;
+    overflow-y: scroll;
+    margin-top:25px;
+    margin-left:200px;
+    margin-right: 200px;
+}
+#Pensum{
+    border-collapse:collapse;
+    width:100%;
+}
+th,td{
+    text-align: center;
+    border-bottom: solid;
+    padding: 15px;
+    margin: 10px;
+}
+#t{
+	color: white;
+	background: #EC3E3F;
+}
+
+</style>
+<h:body>
+	<h:panelGroup layout="block" id="menu">
+		<ul id="nav-bar">
+			<li><h:link value="Pagina Principal" outcome="index"></h:link></li>
+			<li><h:link id="org" value="Ver Historial" outcome="Historial"></h:link></li>
+			<li><h:link value="Programa de la Carrera" outcome="index"></h:link></li>
+			<li><h:link value="Reorganizar Pensum" outcome="index"></h:link></li>
+			<li id="user">
+				<h:link outcome="index">Cerrar Sesion</h:link>
+				<h:panelGroup layout="block" id="dropdown-content">
+    					<h:link value="Log Out" outcome="index"></h:link>
+				</h:panelGroup>
+			</li>
+		</ul>
+	</h:panelGroup>
+     <h:panelGroup layout="block" id="DashPensum" >
+		<h:dataTable id="Pensum" value="#{courseBean.trimester}" var="list">
+				<f:facet name="header">
+					Trimestre
+				</f:facet>
+				
+			<h:column>
+				<f:facet name="header">
+					Clave
+				</f:facet>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Asignatura
+				</f:facet>
+				#{list.name}
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Creditos
+				</f:facet>
+				#{list.credits}
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Pre-Requisito
+				</f:facet>
+ 				#{list.PreReq} 
+			</h:column>
+		</h:dataTable>
+	 </h:panelGroup> 
+		
+	   <h:dataTable id="datosIzq" value="#{courseBean.trimester}" var="ney">
+			<f:facet name="header">
+				Indice acumulado
+				</f:facet>
+				4.00 
+	</h:dataTable>
+	<div class="datosDer">
+		<ul class="list">
+			<br></br>
+			<li><div class="meter">
+				<span style="width: 85%"></span>
+				<br></br>
+				<p>Materias cursadas</p>
+				<p>40/59</p>
+			</div></li>
+			<br></br>
+			<li>
+			    <br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+			<div class="meter">
+				<span style="width: 85%"></span>
+				<br></br>
+				<p>Trimestres cursados</p>
+				<p>10/21</p>
+			</div></li>
+		</ul>
+	</div>
+<div class="container">
+	<div class="col-md-4" >
+			<p class="general">ID: 1056025</p>
+			<p class="general">Carrera: Ingenier�a de Software</p>
+			
+	</div>
+	<div class="col-md-4" >
+			<p class="general">Trimestre de ingreso: Agosto-Octubre 2013</p>
+			<p class="general">Trimestre en curso: Noviembre-Enero 2016</p>
+			
+	</div>
+</div>
+		
+
+</h:body>
+<footer> <ui:include src="templates/footer.xhtml" /> </footer>
+</html>

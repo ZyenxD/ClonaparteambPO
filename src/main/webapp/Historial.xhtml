@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" >
+  <h:head>
+  	<link rel="Stylesheet" type="text/css" href="./Css/po-look-his.css?version=1"/>
+  </h:head>
+  <h:body>
+    <h:panelGroup layout="block" id="menu">
+		<ul id="nav-bar">
+			<li><h:link value="Pagina Principal" outcome="index"></h:link></li>
+			<li><h:link id="org" value="Ver Historial" outcome="Historial"></h:link></li>
+			<li><h:link value="Programa de la Carrera" outcome="index"></h:link></li>
+			<li><h:link value="Reorganizar Pensum" outcome="index"></h:link></li>
+			<li id="user">
+				<h:link outcome="index">Cerrar Sesion</h:link>
+				<h:panelGroup layout="block" id="dropdown-content">
+    					<h:link value="Log Out" outcome="index"></h:link>
+				</h:panelGroup>
+			</li>
+		</ul>
+	</h:panelGroup>
+	<h1 text-align= "center">		Ingenieria de Software - 2010</h1>
+	<h:panelGroup layout="block" id="Pensum_Organizado_auto" >
+		<c:forEach items="#{courseBean.tri}" var="entry">
+			<h:dataTable id="Tabla-P-O" value="#{entry.value}" var="list">
+					<f:facet name="header">
+						<p>Trimestre</p> 
+					</f:facet>
+				<h:column>
+					<f:facet name="header">
+						Clave
+					</f:facet>
+					#{list.code}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Asignatura
+					</f:facet>
+					#{list.name}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Creditos
+					</f:facet>
+					#{list.credits}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Pre-Requisito
+					</f:facet>
+						#{list.prereq}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Co-Requisito
+					</f:facet>
+					<h:outputText rendered="#{list.coreq != '0'}" value="#{list.coreq}" />
+					<h:outputText rendered="#{list.coreq == '0'}" value="-" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Creditos Requeridos
+					</f:facet>
+					<h:outputText rendered="#{list.crdreq != '0'}" value="#{list.crdreq}" />
+					<h:outputText rendered="#{list.crdreq == '0'}" value="-" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Calificacion
+					</f:facet>
+						A
+				</h:column>
+					<f:facet name="footer">
+						<p>Total de creditos: 14</p>
+					</f:facet>
+					<f:facet name="footer">
+						<p>Indice trimestral: 4.00</p>
+					</f:facet>
+			</h:dataTable>	
+		</c:forEach>
+	</h:panelGroup>
+  </h:body>
+</html>

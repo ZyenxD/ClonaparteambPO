@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  <h:head>
+  	<link rel="Stylesheet" type="text/css" href="./Css/po-look-man.css?version=2"/>
+  </h:head>
+  <h:body>
+    <h:panelGroup layout="block" id="menu">
+		<ul id="nav-bar">
+			<li><h:link value="Pagina Principal" outcome="index"></h:link></li>
+			<li><h:link value="Ver Historial" outcome="Historial"></h:link></li>
+			<li><h:link value="Programa de la Carrera" outcome="index"></h:link></li>
+			<li><h:link id="org" value="Reorganizar Pensum" outcome="index"></h:link></li>
+			<li id="user">
+				<h:link outcome="index">Cerrar Sesion</h:link>
+				<h:panelGroup layout="block" id="dropdown-content">
+    					<h:link value="Log Out" outcome="index"></h:link>
+				</h:panelGroup>
+			</li>
+		</ul>
+	</h:panelGroup>
+	<h:panelGroup layout="block" id="Pensum_Organizado_auto" >
+		<c:forEach items="#{courseBean.tri}" var="entry">
+			<h:dataTable id="Tabla-P-O" value="#{entry.value}" var="list">
+					<f:facet name="header">
+						<p>Trimestre </p> 
+					</f:facet>
+				<h:column>
+					<f:facet name="header">
+						Clave
+					</f:facet>
+					#{list.code}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Asignatura
+					</f:facet>
+					#{list.name}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Creditos
+					</f:facet>
+					#{list.credits}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Pre-Requisito
+					</f:facet>
+						#{list.prereq}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Co-Requisito
+					</f:facet>
+					<h:outputText rendered="#{list.coreq != '0'}" value="#{list.coreq}" />
+					<h:outputText rendered="#{list.coreq == '0'}" value="-" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Creditos Requeridos
+					</f:facet>
+					<h:outputText rendered="#{list.crdreq != '0'}" value="#{list.crdreq}" />
+					<h:outputText rendered="#{list.crdreq == '0'}" value="-" />
+				</h:column>
+				<h:column>
+				<f:facet name="header">
+					Mover a
+				</f:facet>
+				<h:selectOneMenu>
+					<f:selectItem itemValue="1" itemLabel="1" />
+            		<f:selectItem itemValue="2" itemLabel="2" />
+            		<f:selectItem itemValue="3" itemLabel="3" />
+            		<f:selectItem itemValue="4" itemLabel="4" />
+            		<f:selectItem itemValue="5" itemLabel="5" />
+				</h:selectOneMenu>
+				</h:column>
+					<f:facet name="footer">
+						Total de creditos: 14
+					</f:facet>
+			</h:dataTable>	
+		</c:forEach>
+	</h:panelGroup>
+	<h:panelGroup layout="block" id="Information_and_bottons">
+		<h:panelGroup layout="block" id="Bottons">
+			<h:panelGroup layout="block" id="Cancelar"><h:link value="Cancelar" outcome="index"></h:link></h:panelGroup>
+			<h:panelGroup layout="block" id="Guardar"><h:link value="Guardar" outcome="index"></h:link></h:panelGroup>
+			<h:panelGroup layout="block" id="Information">
+				<h:panelGroup layout="block" id="Duracion-P">
+					<p>Duracion del Pensum:</p>
+					<p>10 Trimestre</p>
+				</h:panelGroup>
+				<h:panelGroup layout="block" id="Tiempo-R">
+					<p>Permanencia:</p>
+					<p>61 Meses  21 Trimestres</p>
+				</h:panelGroup>
+         	</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+  </h:body>
+</html>

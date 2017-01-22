@@ -1,0 +1,79 @@
+package po;
+
+import java.io.Serializable;
+
+
+public class Student implements Serializable {
+
+    private int id;
+    private String TrimIng;
+    private String TrimAct;
+    private double indice;
+    private int materias;
+    private int creds;
+    private int trims;
+
+    public Student(int id, String ingreso, String actual, double indice, int materias, int creds, int trims){
+        this.TrimIng = ingreso;
+        this.id = id;
+        this.TrimAct = actual;
+        this.indice=indice;
+        this.materias=materias;
+        this.creds=creds;
+    }
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTrimIng() {
+		return TrimIng;
+	}
+
+	public void setTrimIng(String trimIng) {
+		TrimIng = trimIng;
+	}
+
+	public String getTrimAct() {
+		return TrimAct;
+	}
+
+	public void setTrimAct(String trimAct) {
+		TrimAct = trimAct;
+	}
+
+	public double getIndice() {
+		return indice;
+	}
+
+
+	public int getMaterias() {
+		return materias;
+	}
+
+	public void setMaterias(int materias) {
+		this.materias = materias;
+	}
+
+	public int getCreds() {
+		return creds;
+	}
+
+	public void setCreds(int creds) {
+		this.creds = creds;
+	}
+
+	public int getTrims() {
+		return trims;
+	}
+
+	public void setTrims(int trims) {
+		this.trims = trims;
+	}
+    
+
+}
